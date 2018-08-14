@@ -1,0 +1,30 @@
+ 
+<ion-content padding class="masters">
+    <ion-row>
+        <ion-col>
+            <div class="logo-image">
+                <img alt="Logo" src="assets/imgs/icon.png"/>
+            </div>
+        </ion-col>
+    </ion-row>
+  <form (ngSubmit)="login()">
+    <ion-title text-center  class="title">Driver Login</ion-title>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Enter your email</ion-label>
+        <ion-input type="text" [(ngModel)]="user.email" name="email" required=""></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label floating>Enter your password</ion-label>
+        <ion-input type="text" [(ngModel)]="user.password" name="password" required=""></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <button ion-button     block type="submit">Enter</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
