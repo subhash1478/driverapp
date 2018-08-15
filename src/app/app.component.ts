@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
@@ -17,6 +17,8 @@ const config = {
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
    user:any={}
   rootPage: string;
   constructor(platform: Platform,   
@@ -44,7 +46,7 @@ export class MyApp {
         let logincheck = localStorage.getItem('token')
         this._services.getGeolocation();
          if ( logincheck != null) {
-          this.rootPage = "OrderPage";
+          this.rootPage = "DashboardPage";
         }
         else {
           this.rootPage = "SigninPage";
@@ -53,4 +55,15 @@ export class MyApp {
     });
     firebase.initializeApp(config);
   }
+  goToPage(page){
+      
+    this.nav.push(page);
+   }
+
+    
+   logout() {
+     localStorage.removeItem('userdetails')
+     localStorage.removeItem('token')
+     this.nav.setRoot("SigninPage");
+   }
 }

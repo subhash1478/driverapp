@@ -19,17 +19,28 @@
     <div class="ordr-item" *ngFor="let item of productList;let i =index">
      
         <ion-item>
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/food-img-1.jpg">
-          </ion-thumbnail>
-          <h2> {{item.shopid.title}}</h2>
-          <p>Ordered at{{item.createdAt|date }}</p>
+          
+          <h2>Order By
+             {{item.order.userid.firstname}} {{item.order.userid.lastname}}</h2>
+             <p class="item-name"> </p>
+          <h2>Shop {{item.order.shopid.title}}</h2>
+          <p>Ordered at{{item.order.createdAt|date }}</p>
           <button ion-button clear item-end  class="btnarw"><ion-icon name="arrow-forward"></ion-icon></button>
+       
+          <ion-row    *ngFor="let pro of item.cart;let i =index">
+              <ion-col col-3 text-left>{{pro.productid.title}}</ion-col>
+              <ion-col col-3 text-center>x {{pro.quantity}}</ion-col>
+              <ion-col col-3 text-center> {{pro.price|currency:'INR'}}</ion-col>
+              <ion-col col-3 text-right class="clrblac">{{pro.quantity*pro.price|currency:'INR'}}</ion-col>
+            </ion-row>
+            <div class="total-dtls"  text-right >
+                <p class="ttprice">  Total {{item.order.totalprice|currency:'INR'}}</p>
+             </div>
         </ion-item>
-        <div class="total-dtls">
-            <p class="item-name">1 masala Kulcha, 5 Butter Naan</p>
-            <p class="ttprice">Total ₹385.25</p>
-        </div>
+        
+        
+        
+         
     </div>
 
       

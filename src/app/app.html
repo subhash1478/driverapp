@@ -1,1 +1,36 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu type="overlay" [content]="mycontent">
+     
+    
+        <ion-content  class="side_menu_content">
+              
+              <div class="profile-imgB">
+                    <div class="profile_imgoutline">
+                          <div class="profile_img_side" [ngStyle]="{'background' : 'url(' + user.profile_image + ')center no-repeat'}" >
+                          </div>
+                    </div>
+                    <p class="nm-tilte" text-center>{{user.firstname}} {{user.lastname}}</p>
+                    <p class="nm-eml" text-center>{{user.email}}</p>
+              </div>
+              
+              <ion-list class="sidemenu_list">
+                    <button menuClose ion-item  (click)="goToPage('DashboardPage')" >
+                          <ion-icon name="search"></ion-icon>
+                          Task
+                    </button>
+                    <button menuClose ion-item  (click)="goToPage('OrderPage')" >
+                            <ion-icon name="search"></ion-icon>
+                            My order
+                      </button>
+                    <button menuClose ion-item (click)="logout()" >
+                          <ion-icon name="log-out"></ion-icon>
+                          
+                          Logout
+                    </button>
+              </ion-list>
+              
+        </ion-content>
+        
+  </ion-menu>
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav #mycontent [root]="rootPage"></ion-nav>
+  

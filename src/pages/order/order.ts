@@ -24,8 +24,11 @@ export class OrderPage {
     public utility: UtilityProvider, public navCtrl: NavController, 
     public navParams: NavParams, public _services: ServicesProvider) 
     {
-      let user=JSON.parse(localStorage.getItem('token'));
-      this.loggedInid=user.id
+      if(localStorage.getItem('token')!=null){
+        let user=JSON.parse(localStorage.getItem('token'));
+        this.loggedInid=user.id
+
+      }
       
       console.log(this.loggedInid);
       
@@ -33,8 +36,15 @@ export class OrderPage {
     
     ionViewDidLoad() {
       // this._services.
-      this._services.getOrderList( this.loggedInid).subscribe((response)=>{
+      let obj={
+        id: this.loggedInid,
+        status:0,
+        driver_accept:0
+      }
+      this._services.getOrderList(obj).subscribe((response)=>{
+
         
+        console.log(response.response.data);
         
         this.productList=response.response.data;
         

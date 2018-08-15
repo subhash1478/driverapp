@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button  menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Task Assign</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content  >
+    <div class="radial-progress" data-progress="0">
+        <div class="circle">
+            <div class="mask full" [style.transform]="transform">
+                <div class="fill" [style.transform]="transform"></div>
+            </div>
+            <div class="mask half">
+                <div class="fill" [style.transform]="transform"></div>
+                <div class="fill fix" [style.transform]="fixTransform"></div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+        <div class="inset">
+            <div class="percentage">{{timer.displayTime}}</div>
+        </div>
+    </div>
+    <ion-list>
+        <div   *ngFor="let item of productList;let i =index">
+            <ion-item>
+                <h2>Order By
+                    {{item.order.userid.firstname}} {{item.order.userid.lastname}}</h2>
+                    <h2>Shop {{item.order.shopid.title}}</h2>
+                    <p>Ordered at{{item.order.createdAt|date }}</p>
+                    <button ion-button clear item-end  class="btnarw"><ion-icon name="arrow-forward"></ion-icon></button>
+                    <ion-row    *ngFor="let pro of item.cart;let i =index">
+                        <ion-col col-3 text-left>{{pro.productid.title}}</ion-col>
+                        <ion-col col-3 text-center>x {{pro.quantity}}</ion-col>
+                        <ion-col col-3 text-center> {{pro.price|currency:'INR'}}</ion-col>
+                        <ion-col col-3 text-right class="clrblac">{{pro.quantity*pro.price|currency:'INR'}}</ion-col>
+                    </ion-row>
+                    <div class="total-dtls"  text-right >
+                        <p class="ttprice">  Total {{item.order.totalprice|currency:'INR'}}</p>
+                    </div>
+                    <ion-row>
+                        <ion-col>
+                            <button ion-button block color="danger" (click)="orderAccept('reject')">Reject</button>
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button   block color="secondary" (click)="orderAccept('accept',item)">    Accept  </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-item>
+                <ion-list>
+
+                        <ion-item>
+                          <ion-label>Order Picked</ion-label>
+                          <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+                        </ion-item>
+                      
+                        <ion-item>
+                          <ion-label>Payment received</ion-label>
+                          <ion-toggle [(ngModel)]="sausage"  ></ion-toggle>
+                        </ion-item>
+                      
+                        <ion-item>
+                          <ion-label>Order delivered</ion-label>
+                          <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
+                        </ion-item>
+                      
+                      </ion-list>
+                
+            </div>
+        </ion-list> 
+    </ion-content>
+    

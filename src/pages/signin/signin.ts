@@ -48,7 +48,7 @@ export class SigninPage {
         let result=Response.response.data
         if (result) {
            localStorage.setItem('token', JSON.stringify(result))
-           this.navCtrl.setRoot('OrderPage');
+           this.navCtrl.setRoot('DashboardPage');
           } else {
           var msg = {
             msg: result.message,

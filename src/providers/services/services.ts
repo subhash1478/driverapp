@@ -264,8 +264,8 @@ getOrderDetails(id){
   .catch(this.handleError)
 } 
 
-getOrderList(id){
-  return this.http.get(`${Config.SAIL_ENDPOINT}/get-order-list?id=${id}`)
+getOrderList(data){
+  return this.http.get(`${Config.SAIL_ENDPOINT}/get-driver-order?id=${data.id}&status=${data.status}&driver_accept=${data.driver_accept}`)
   .map((response:Response)=>response)
   .catch(this.handleError)
 }
@@ -273,6 +273,12 @@ getOrderList(id){
 
 removeItem(data){
   return this.http.post(`${Config.SAIL_ENDPOINT}/remove-cart-item`,data)
+  .map((response:Response)=>response)
+  .catch(this.handleError)
+}
+
+orderAcceptBydriver(data){
+  return this.http.post(`${Config.SAIL_ENDPOINT}/driver-order-accept`,data)
   .map((response:Response)=>response)
   .catch(this.handleError)
 }
