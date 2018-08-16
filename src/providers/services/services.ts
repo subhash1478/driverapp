@@ -277,8 +277,8 @@ removeItem(data){
   .catch(this.handleError)
 }
 
-orderAcceptBydriver(data){
-  return this.http.post(`${Config.SAIL_ENDPOINT}/driver-order-accept`,data)
+task(data){
+  return this.http.post(`${Config.SAIL_ENDPOINT}/task`,data)
   .map((response:Response)=>response)
   .catch(this.handleError)
 }
