@@ -41,7 +41,7 @@ export class OrderPage {
         status:0,
         driver_accept:0
       }
-      this._services.getOrderList(obj).subscribe((response)=>{
+      this._services.getDriverOrderList(obj).subscribe((response)=>{
 
         
         console.log(response.response.data);

@@ -269,6 +269,11 @@ getOrderList(data){
   .map((response:Response)=>response)
   .catch(this.handleError)
 }
+getDriverOrderList(data){
+  return this.http.get(`${Config.SAIL_ENDPOINT}/get-driver-order-list?id=${data.id}&status=${data.status}&driver_accept=${data.driver_accept}`)
+  .map((response:Response)=>response)
+  .catch(this.handleError)
+}
 
 
 removeItem(data){

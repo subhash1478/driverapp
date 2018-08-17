@@ -30,6 +30,7 @@ export class DashboardPage {
   private percent;
   private fixTransform;
   seconds: number;
+  error_message: string;
   constructor(  public sanitizer:DomSanitizer,public alertCtrl:AlertController,
     public utility: UtilityProvider, public navCtrl: NavController, 
     public navParams: NavParams, public _services: ServicesProvider) {
@@ -61,6 +62,8 @@ export class DashboardPage {
       },(error)=>{
         console.log(error);
         
+
+        this.error_message='No new task'
       })
     }
     
