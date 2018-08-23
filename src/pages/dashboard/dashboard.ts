@@ -4,6 +4,7 @@ import { UtilityProvider } from '../../providers/utility/utility';
 import { ServicesProvider } from '../../providers/services/services';
 import {   Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Config } from '../../config';
 
 export interface CountdownTimer {
   seconds: number
@@ -40,6 +41,8 @@ export class DashboardPage {
         
       }
       this.seconds=60
+      this.saveDevicesToken()
+
     }
     
     ngOnInit() {
@@ -212,6 +215,20 @@ export class DashboardPage {
         let result=response.response.data;
         console.log(response);
         this.ngOnInit()
+        
+      })
+    }
+        
+    saveDevicesToken(){
+      let user=JSON.parse(localStorage.getItem('token'));
+
+      let data = {
+        devicesid: localStorage.getItem('devices_token'),
+        userid: user.id,
+        user_type:'driver',
+      }
+      this._services.saveDevicesToken(data).subscribe((response)=>{
+        console.log(response);
         
       })
     }

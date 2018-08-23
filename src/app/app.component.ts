@@ -4,7 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { ServicesProvider } from '../providers/services/services';
- 
+import { OneSignal } from '@ionic-native/onesignal';
+
 const config = {
   apiKey: 'AIzaSyAlBTR2dXVxE7lxPtxiaLSZet9uZG3u5yE',
   authDomain: 'bharampur-9142d.firebaseapp.com',
@@ -21,12 +22,12 @@ export class MyApp {
 
    user:any={}
   rootPage: string;
-  constructor(platform: Platform,   
+  constructor(platform: Platform,   private oneSignal: OneSignal,
      public _services: ServicesProvider) {
       platform.ready().then(() => {
-        if (platform.is('core')) {
+ 
 
-        //   this.oneSignal.startInit("a0d66b31-b2a2-4a76-a7b2-54abb0175216", "977511232376")
+        //   this.oneSignal.startInit("db2e0cfe-be1a-4f51-9409-018d519e43ba", "977511232376")
 
 
         // this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
@@ -37,11 +38,19 @@ export class MyApp {
         
         // this.oneSignal.handleNotificationOpened().subscribe(() => {
         //   // do something when a notification is opened
-        // });
+        // }); 
+        
+        // this.oneSignal.getIds().then(function(data){
+        //   console.log(data);
+
+        //  localStorage.setItem('devices_token',data.userId)
+          
+        // })
         
         // this.oneSignal.endInit();
-    
-      }
+        
+     
+      
 
         let logincheck = localStorage.getItem('token')
         this._services.getGeolocation();

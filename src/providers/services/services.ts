@@ -287,4 +287,9 @@ task(data){
   .map((response:Response)=>response)
   .catch(this.handleError)
 }
+saveDevicesToken(data){
+  return this.http.post(`${Config.SAIL_ENDPOINT}/add-devices`,data)
+  .map((response:Response)=>response)
+  .catch(this.handleError)
+}
 }
